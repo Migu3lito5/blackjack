@@ -1,0 +1,51 @@
+.card {
+    background-color:#232524;
+    color: white;
+    border: none;
+    padding-bottom: 2rem;
+}
+
+.card a {
+    color: rgb(84, 101, 86);
+}
+
+.main-input {
+    margin: 2rem 0 0 4rem;
+    width: 60%;
+}
+
+.input-group-text {
+    border-color: rgb(84, 101, 86);
+    background-color: rgb(84, 101, 86);
+    color: white;
+}
+
+.btn {
+    display: block;
+    border: solid 1px rgb(84, 101, 86);
+    color:rgb(84, 101, 86);
+    margin-top: 2rem;
+    width: 7rem;
+    
+}
+
+
+.btn-outline-light {
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-border-color: rgb(84, 101, 86);
+    --bs-btn-hover-bg: rgb(84, 101, 86);
+
+}
+
+
+h5{
+    margin-left:3% ;
+}
+h6, p {
+    margin-top: 1rem;
+    margin-left: 10%;
+}
+
+
+
+

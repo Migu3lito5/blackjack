@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackJack - Home Page</title>
+    <script src="scripts/setup.js" defer></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/main-screen.css">
+</head>
+<body>
+
+    <main>
+       <div class="card" style="width: 80%; max-width: 70rem; margin: 4rem auto;">
+        <img src="https://images.pexels.com/photos/6664196/pexels-photo-6664196.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="400rem" class="card-img-top" alt="BlackJack Hand Image" >
+        <div class="card-body">
+          <h5 class="card-title">Welcome To BlackJack!</h5>
+          <h6 class="card-text">If you need a refresher on the rules.
+             <a href="https://www.blackjackapprenticeship.com/how-to-play-blackjack/" target="_blank">Click here</a> <br>
+            </h6>
+            <h6>If not, please fill in the information below to start playing!</h6>
+            <div class="input-group main-input mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input id="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+            
+            <div class="input-group main-input mb-3">
+                <span class="input-group-text">$</span>
+                <input id="initMoney" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">.00</span>
+            </div>
+          <p class="card-text"> Good Luck and Have fun, and remember only play with what you can afford to loose :) </p>
+          <div class=" button-adjust row justify-content-center">
+            <button id="submit" type="button" class="btn btn-outline-light">Play</button>
+          </div>
+        </div>
+      </div> 
+    </main>    
+</body>
+</html>
+
