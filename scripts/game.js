@@ -1,6 +1,9 @@
 var userName = sessionStorage.getItem("userName");
 var initMoney = sessionStorage.getItem("initMoney");
 
+var playerHand = document.getElementById('player-hand');
+var dealerHand = document.getElementById('dealer-hand');
+
 var playerCount = []
 var dealerCount = []
 
@@ -8,21 +11,19 @@ var dealerCount = []
 const onStart = () => {
    let gameBoard = document.getElementById('gameboard');
    gameBoard.style.visibility = "visible"
-   
 
-   let playerHand = document.getElementById('player-hand');
-   let dealerHand = document.getElementById('dealer-hand');
+   let name = document.getElementById('player-name');
+   name.innerHTML = userName;
+   let bal = document.getElementById('player-bal');
+   bal.innerHTML = "$" + initMoney;
 
+    generateCard(playerHand.id);
+    generateCard(dealerHand.id);
 
-    
-   playerHand.appendChild(generateCard());
-   dealerHand.appendChild(generateCard());
+    generateCard(playerHand.id);
+    generateCard(dealerHand.id);
 
-
-    
-
-
-    
+    document.getElementById('start').remove();
 
 
 }
@@ -40,8 +41,9 @@ const generateValueForCard = () => {
     return card;
 }
 
-const generateCard = () => {
+const generateCard = (id) => {
 
+    let playerHand = document.getElementById(id);
     let cardValues = generateValueForCard();
 
     let card = document.createElement('div');
@@ -66,12 +68,14 @@ const generateCard = () => {
     card.appendChild(cardHeader);
     card.appendChild(cardBody);
 
-    return card;
+    updateCount(id, cardValues.number);
+    playerHand.appendChild(card);
+
 
 }
 
-const assignSuit = (value) => {
-    switch(value) {
+const assignSuit = (suit) => {
+    switch(suit) {
         case 1:
             return "bi bi-suit-spade-fill";
         case 2:
@@ -85,8 +89,13 @@ const assignSuit = (value) => {
       }
 }
 
-const giveCard = () => {
-
+const updateCount = (id, number) => {
+    if (id === 'player-hand'){
+        playerCount.push(number);
+    }
+    else {
+        dealerCount.push(number);
+    }
 }
 
 
@@ -94,7 +103,8 @@ const deleteBoard = () => {
 
 }
 
-const gameLoop = () => {
+
+const updateValues = () => {
 
 }
 

@@ -1,7 +1,7 @@
 main {
     display: flex;
     flex-direction: column;
-    margin: 7rem 8% 0 8%;
+    margin: 3rem 8% 0 8%;
     padding: 2rem 0 5rem 0;
     background-color: #292a29;
 }
@@ -40,13 +40,52 @@ main {
 }
 
 
-.btn {
+.start-btn {
     display: block;
     border: solid 1px rgb(84, 101, 86);
     background-color: rgb(84, 101, 86);;
     color: white;
     margin-top: 3rem;
     width: 10rem;  
+}
+
+.user-ui {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-evenly;
+    background-color:#232524;
+    color: white;
+    padding: 3rem;
+}
+
+.user-input {
+    display: flex;
+    flex-direction: row;
+    width: 20rem;
+    height: 1rem;
+    align-content: center;
+    
+}
+
+.user-buttons {
+    display: flex;
+    margin: 0;
+    gap: 1rem;
+}
+
+.user-buttons button {
+    width: 5rem;
+    height: 2rem;
+    
+}
+
+.user-stats {
+    display: flex;
+    gap: 5rem;
+    font-size: 21px;
 }
 
 
