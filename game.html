@@ -6,32 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlackJack - Game Page </title>
     <script src="scripts/game.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/game.css">
 </head>
 <body>
-   <header>
-    <h2 id="user-name"></h2>
-    <h2 id="init-money"></h2>
-    </header>
-   <main>
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
+ 
+   <main id="gameboard" style="visibility: hidden;">
+    
+    <div id="dealer-hand" class="hand dealer">
+       
 
-      <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
+    </div>
+
+    <div id="player-hand" class="hand player">
+        
+        <!--
+            
+          <div class="card">
+            <div class="card-header">
+                <h1 style="text-align: center;">10</h1>
+            </div>
+            <div class="card-body">
+                <i class="bi bi-suit-spade-fill"></i>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+                <h1 style="text-align: center;">6</h1>
+            </div>
+            <div class="card-body">
+                <i class="bi bi-suit-spade-fill"></i>
+            </div>
+            
+          </div>  
+
+        -->
+        
+    </div>
+
    </main>
+
+   <div id="start-button" class=" button-adjust row justify-content-center">
+    <button id="start" type="button" class="btn">Click to Start!</button>
+  </div>
+   
+
 </body>
 </html>
