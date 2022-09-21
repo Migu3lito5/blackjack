@@ -1,5 +1,7 @@
 var userName = sessionStorage.getItem("userName");
 var initMoney = sessionStorage.getItem("initMoney");
+var playerBalance = parseInt(initMoney);
+var currBet = 0;
 
 var playerHand = document.getElementById('player-hand');
 var dealerHand = document.getElementById('dealer-hand');
@@ -9,31 +11,16 @@ var dealerCount = []
 
 
 const onStart = () => {
-   let gameBoard = document.getElementById('gameboard');
-   gameBoard.style.visibility = "visible"
 
-   let name = document.getElementById('player-name');
-   name.innerHTML = userName;
-   let bal = document.getElementById('player-bal');
-   bal.innerHTML = "$" + initMoney;
+   document.getElementById('bet-button').disabled = false;
 
-    generateCard(playerHand.id);
-    generateCard(dealerHand.id);
-
-    generateCard(playerHand.id);
-    generateCard(dealerHand.id);
-
-    console.log(playerCount, dealerCount)
-
-    document.getElementById('start').remove();
-
-
+   document.getElementById('start').remove();
 }
 
 const generateValueForCard = () => {
 
     let suit = Math.floor(Math.random() * 4) + 1;
-    let number = Math.floor(Math.random() * 11) + 1;
+    let number = Math.floor(Math.random() * 10) + 1;
 
     let card = {
         suit : suit,
@@ -91,6 +78,25 @@ const assignSuit = (suit) => {
       }
 }
 
+
+const generateStartingPlayerHand = () => {
+
+    generateCard(playerHand.id);
+    generateCard(playerHand.id);
+
+}
+
+const generateDealerStartingHand = () => {
+
+    generateCard(dealerHand.id);
+    generateCard(dealerHand.id);
+
+    dealerHand.childNodes[0].childNodes[0].innerText = '?';
+    dealerHand.childNodes[0].childNodes[0].style.color = '#232524';
+ 
+}
+
+
 const updateCount = (id, number) => {
     if (id === 'player-hand'){
         playerCount.push(number);
@@ -101,39 +107,146 @@ const updateCount = (id, number) => {
 }
 
 
-const deleteBoard = () => {
+const resetBoard = () => {
 
-    // clear board
-    // clear arrays
-
-
+    let playerSide = document.getElementById('player-hand');
+    let dealerSide = document.getElementById('dealer-hand');
+    playerSide.innerHTML = "";
+    dealerSide.innerHTML = "";
+   
 }
 
 
-const updateValues = () => {
-    // update money values after a round
+const updateValues = (money) => {
+    let bal = document.getElementById('player-bal');
+    
+    
+    if (money >= 0) {
+        playerBalance = playerBalance + money;
+    } else {
+        // weird behavior, dont know how it works but it works, becuase doing playerBalance = playerBalance - money -> adds instead of subtraction
+        // but this below does the intended behavior 
+        money = money * -1
+        playerBalance = (playerBalance - money);
+        
+    }
+
+    bal.innerText = "$" + playerBalance;
+
 
 }
 
 
 const startRound = () => {
+    let gameBoard = document.getElementById('gameboard');
 
+    
+    
+    let betValue = document.getElementById('bet-amount').value
+
+    betValue = parseInt(betValue);
+
+    if(betValue > playerBalance) {
+        alert('please bet with money you have available!')
+        
+    } else {
+        currBet = betValue;
+        resetBoard();
+        generateDealerStartingHand();
+        generateStartingPlayerHand();
+        gameBoard.style.visibility = "visible"
+
+        document.getElementById('bet-button').disabled = true;
+        document.getElementById('hit-btn').disabled = false;
+        document.getElementById('stay-btn').disabled = false;
+
+    }
 }
 
 const stay = () => {
-
+    console.log('stay')
+    calculateWinner();
+    document.getElementById('hit-btn').disabled = true;
+    document.getElementById('stay-btn').disabled = true;
+    document.getElementById('bet-button').disabled = false;
 }
 
 const hit = () => {
+    let playerScore = playerCount.reduce((a, b) => a + b, 0);
 
+    if(playerScore > 21) {
+        stay();
+    } else {
+        generateCard(playerHand.id); 
+        console.log('hit')
+    }
 }
 
 const calculateWinner = () => {
 
+   let playerScore = playerCount.reduce((a, b) => a + b, 0);
+   let dealerScore = dealerCount.reduce((a, b) => a + b, 0);
+
+   if(dealerScore <= 16) {
+        generateCard(dealerHand.id);
+        dealerScore = dealerCount.reduce((a, b) => a + b, 0);
+    }
+   
+   playerCount = []
+   dealerCount = []
+
+   if((dealerScore > 21 && playerScore > 21) || (playerScore <= 21 && dealerScore <= 21 && playerScore === dealerScore)){
+    Swal.fire({
+        title: 'You tied!',
+        text: `You got ${playerScore} , and dealer got ${dealerScore}`,
+        confirmButtonColor: 'rgb(84, 101, 86)',
+        color: 'white',
+        background: '#232524',
+    });
+    updateValues(0);
+   } else if ((dealerScore <= 21 && playerScore > 21) || (playerScore <= 21 && dealerScore <= 21 && dealerScore > playerScore)) {
+    Swal.fire({
+        title: 'You Lost!',
+        text: `You got ${playerScore} , and dealer got ${dealerScore}`,
+        confirmButtonColor: 'rgb(84, 101, 86)',
+        color: 'white',
+        background: '#232524',
+    });
+    updateValues(-currBet);
+   } else {
+    Swal.fire({
+        title: 'You Won!',
+        text: `You got ${playerScore} , and dealer got ${dealerScore}`,
+        confirmButtonColor: 'rgb(84, 101, 86)',
+        color: 'white',
+        background: '#232524',
+    });
+    console.log('win')
+    updateValues(currBet * 2);
+   }
+ 
+
+
+    let gameBoard = document.getElementById('gameboard');
+    gameBoard.style.visibility = 'hidden'
+    currBet = 0;
+   
+
 }
+
+let bal = document.getElementById('player-bal');
+let pname = document.getElementById('player-name');
+
+pname.innerHTML = userName;
+bal.innerHTML = "$" + playerBalance;
 
 
 document.getElementById('start').addEventListener('click', onStart);
 document.getElementById('hit-btn').addEventListener('click', hit);
 document.getElementById('stay-btn').addEventListener('click', stay);
+document.getElementById('bet-button').addEventListener('click', startRound);
+
+document.getElementById('hit-btn').disabled = true;
+document.getElementById('stay-btn').disabled = true;
+document.getElementById('bet-button').disabled = true;
 

@@ -1,11 +1,16 @@
 main {
     display: flex;
     flex-direction: column;
-    margin: 3rem 8% 0 8%;
-    padding: 2rem 0 5rem 0;
+    margin: 2rem 8% 0 8%;
+    padding: 1rem 0 3rem 0;
     background-color: #4a534a;
 }
 
+h3 {
+    margin-top: 1rem;
+    text-align: center;
+    color: white;
+}
 
 .hand {
     display: flex;
@@ -15,17 +20,28 @@ main {
 }
 
 .action-butn {
-   background-color: #198754;
-   border-color:#198754;
+    background-color: rgb(84, 101, 86);
+   border: none;
    border-radius: 5px;
    color: white; 
    height: 2.5rem;
    width: 6rem;
+   transition: border-radius 0.3s; 
 }
 
+.action-butn:hover {
+    background-color: #157347;
+    border-radius: 0;
+}
+
+
+
 .bi {
-    
     font-size: 5rem;
+}
+
+.bi-question {
+    font-size: 3.5rem;
 }
 
 .card-body {
@@ -36,7 +52,8 @@ main {
     background-color:#e7e8e7;
     border: none;
     padding-bottom: 2rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .card-header {
@@ -50,12 +67,20 @@ main {
 
 
 .start-btn {
-    display: block;
     border: solid 1px rgb(84, 101, 86);
-    background-color: rgb(84, 101, 86);;
+    background-color: rgb(84, 101, 86);
     color: white;
-    margin-top: 3rem;
+    margin-top: 6rem;
     width: 10rem;  
+    padding: 0.4rem;
+    border-radius: 10px;
+    transition: border-radius 0.3s;
+}
+
+.start-btn:hover {
+    border: solid 1px rgb(84, 119, 89);
+    background-color: rgb(84, 119, 89);
+    border-radius: 0;
 }
 
 .user-ui {
@@ -67,7 +92,7 @@ main {
     justify-content: space-evenly;
     background-color:#232524;
     color: white;
-    padding: 3rem;
+    padding: 2.5rem;
 }
 
 .user-input {
@@ -91,7 +116,7 @@ main {
 .user-stats {
     display: flex;
     gap: 3rem;
-    font-size: 25px;
+    font-size: 23px;
 }
 
 
