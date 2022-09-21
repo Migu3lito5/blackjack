@@ -23,6 +23,8 @@ const onStart = () => {
     generateCard(playerHand.id);
     generateCard(dealerHand.id);
 
+    console.log(playerCount, dealerCount)
+
     document.getElementById('start').remove();
 
 
@@ -101,12 +103,37 @@ const updateCount = (id, number) => {
 
 const deleteBoard = () => {
 
+    // clear board
+    // clear arrays
+
+
 }
 
 
 const updateValues = () => {
+    // update money values after a round
+
+}
+
+
+const startRound = () => {
+
+}
+
+const stay = () => {
+
+}
+
+const hit = () => {
+
+}
+
+const calculateWinner = () => {
 
 }
 
 
 document.getElementById('start').addEventListener('click', onStart);
+document.getElementById('hit-btn').addEventListener('click', hit);
+document.getElementById('stay-btn').addEventListener('click', stay);
+

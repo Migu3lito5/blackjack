@@ -3,8 +3,9 @@ main {
     flex-direction: column;
     margin: 3rem 8% 0 8%;
     padding: 2rem 0 5rem 0;
-    background-color: #292a29;
+    background-color: #4a534a;
 }
+
 
 .hand {
     display: flex;
@@ -13,6 +14,14 @@ main {
     column-gap: 1rem;
 }
 
+.action-butn {
+   background-color: #198754;
+   border-color:#198754;
+   border-radius: 5px;
+   color: white; 
+   height: 2.5rem;
+   width: 6rem;
+}
 
 .bi {
     
@@ -65,8 +74,9 @@ main {
     display: flex;
     flex-direction: row;
     width: 20rem;
-    height: 1rem;
     align-content: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
     
 }
 
@@ -76,16 +86,12 @@ main {
     gap: 1rem;
 }
 
-.user-buttons button {
-    width: 5rem;
-    height: 2rem;
-    
-}
+ 
 
 .user-stats {
     display: flex;
-    gap: 5rem;
-    font-size: 21px;
+    gap: 3rem;
+    font-size: 25px;
 }
 
 
