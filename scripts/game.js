@@ -15,7 +15,7 @@ const onStart = () => {
     
    Swal.fire({
     title: 'Welcome!',
-    text: "To officialy start, place a bet! Good Luck!",
+    text: "To officialy start, place a bet! Good Luck!      (Heads up 1s are not 11s, treat them as that exact value 0_0)",
     confirmButtonColor: 'rgb(84, 101, 86)',
     color: 'white',
     background: '#232524',
@@ -161,18 +161,20 @@ const startRound = () => {
 
 const stay = () => {
     console.log('stay')
-    calculateWinner();
-    document.getElementById('hit-btn').disabled = true;
-    document.getElementById('stay-btn').disabled = true;
-    document.getElementById('bet-button').disabled = false;
+    dealerDrawTill16()
+
+    setTimeout(() => {
+        calculateWinner();
+        document.getElementById('hit-btn').disabled = true;
+        document.getElementById('stay-btn').disabled = true;
+        document.getElementById('bet-button').disabled = false;
+    }, 1200)
+
+  
 }
 
 const hit = () => {
     let playerScore = playerCount.reduce((a, b) => a + b, 0);
-
-    if(dealerScore <= 16){
-        generateCard(dealerHand.id);
-    }
 
     if(playerScore > 21) {
         stay();
@@ -182,16 +184,20 @@ const hit = () => {
     }
 }
 
+const dealerDrawTill16 = () => {
+    dealerScore = dealerCount.reduce((a, b) => a + b, 0);
+    while(dealerScore <= 16){
+        generateCard(dealerHand.id);
+        dealerScore = dealerCount.reduce((a, b) => a + b, 0); 
+    }
+}
+
 const calculateWinner = () => {
 
+   
    let playerScore = playerCount.reduce((a, b) => a + b, 0);
    let dealerScore = dealerCount.reduce((a, b) => a + b, 0);
 
-   if(dealerScore <= 16) {
-        generateCard(dealerHand.id);
-        dealerScore = dealerCount.reduce((a, b) => a + b, 0);
-    }
-   
    // reset their hand value 
    playerCount = []
    dealerCount = []
